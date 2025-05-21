@@ -10,8 +10,12 @@ Here is the question to answer: {question}
 """ 
 
 prompt = ChatPromptTemplate.from_template(template)
-
 chain = prompt | model
 
-result = chain.invoke({"reviews": [], "question": "What is the best pizza place in town?"})
-print(result)
+while True:
+    print("\n\n-------------------------------------")
+    question = input("(q to quit) Ask your question: ")
+    if question == "q":
+        break
+    result = chain.invoke({"reviews": [], "question": question})
+    print(result)
